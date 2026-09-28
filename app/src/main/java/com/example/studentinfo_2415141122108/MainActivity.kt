@@ -10,8 +10,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // Khởi tạo Model sinh viên
         val student = Student(
             id = "2415141122108",
             name = "Huỳnh Ngọc Huy",
@@ -20,7 +18,6 @@ class MainActivity : AppCompatActivity() {
             gpa = 8.5
         )
 
-        // Ánh xạ View
         val tvStudentId = findViewById<TextView>(R.id.tvStudentId)
         val tvStudentName = findViewById<TextView>(R.id.tvStudentName)
         val tvClassName = findViewById<TextView>(R.id.tvClassName)
@@ -28,14 +25,12 @@ class MainActivity : AppCompatActivity() {
         val tvGpa = findViewById<TextView>(R.id.tvGpa)
         val tvStatus = findViewById<TextView>(R.id.tvStatus)
 
-        // Gán dữ liệu từ Model lên giao diện
         tvStudentId.text = "Mã SV: ${student.id}"
         tvStudentName.text = "Họ tên: ${student.name.uppercase()}"
         tvClassName.text = "Lớp: ${student.className}"
         tvAge.text = "Tuổi: ${student.age}"
         tvGpa.text = "Điểm GPA: ${student.gpa}"
 
-        // Gọi Extension Function
         val status = student.getStatus()
         tvStatus.text = "Trạng thái: $status"
         tvStatus.setTextColor(if (status == "Đạt") Color.GREEN else Color.RED)
