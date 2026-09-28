@@ -1,20 +1,43 @@
 package com.example.studentinfo_2415141122108
 
+import android.graphics.Color
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        // Khởi tạo Model sinh viên
+        val student = Student(
+            id = "2415141122108",
+            name = "Huỳnh Ngọc Huy",
+            className = "IT",
+            age = 20,
+            gpa = 8.5
+        )
+
+        // Ánh xạ View
+        val tvStudentId = findViewById<TextView>(R.id.tvStudentId)
+        val tvStudentName = findViewById<TextView>(R.id.tvStudentName)
+        val tvClassName = findViewById<TextView>(R.id.tvClassName)
+        val tvAge = findViewById<TextView>(R.id.tvAge)
+        val tvGpa = findViewById<TextView>(R.id.tvGpa)
+        val tvStatus = findViewById<TextView>(R.id.tvStatus)
+
+        // Gán dữ liệu từ Model lên giao diện
+        tvStudentId.text = "Mã SV: ${student.id}"
+        tvStudentName.text = "Họ tên: ${student.name.uppercase()}"
+        tvClassName.text = "Lớp: ${student.className}"
+        tvAge.text = "Tuổi: ${student.age}"
+        tvGpa.text = "Điểm GPA: ${student.gpa}"
+
+        // Gọi Extension Function
+        val status = student.getStatus()
+        tvStatus.text = "Trạng thái: $status"
+        tvStatus.setTextColor(if (status == "Đạt") Color.GREEN else Color.RED)
     }
 }
