@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         val student = Student(
             id = "2415141122108",
             name = "Huỳnh Ngọc Huy",
-            className = "IT",
+            className = "24SK1",
             age = 20,
             gpa = 8.5
         )
